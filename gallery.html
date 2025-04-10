@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vintage Wheels - Our Collection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B0000;
+            --secondary: #D4AF37;
+            --light: #F5F5F5;
+            --dark: #1A1A1A;
+            --vintage: #E8D8C0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--vintage);
+            background-image: url('https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+        
+        .topnav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo img {
+            height: 60px;
+            filter: drop-shadow(0 0 5px var(--secondary));
+        }
+        
+        .menu {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .menu a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .menu a:hover {
+            color: var(--secondary);
+            background-color: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .inventory-header {
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+            background-color: rgba(26, 26, 26, 0.7);
+            margin-bottom: 3rem;
+        }
+        
+        .inventory-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+        
+        .inventory-header p {
+            font-size: 1.2rem;
+            color: var(--light);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .filter-bar {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background-color: rgba(26, 26, 26, 0.7);
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .filter-group label {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+        
+        .filter-group select, .filter-group input {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--secondary);
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 4px;
+            font-family: 'Lato', sans-serif;
+        }
+        
+        .filter-group button {
+            padding: 0.5rem 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-group button:hover {
+            background-color: #6d0000;
+            transform: translateY(-2px);
+        }
+        
+        .inventory-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .car-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .car-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .car-card:hover .car-image img {
+            transform: scale(1.05);
+        }
+        
+        .car-details {
+            padding: 1.5rem;
+        }
+        
+        .car-details h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+        }
+        
+        .car-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: #555;
+        }
+        
+        .car-price {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+        
+        .car-description {
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .car-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-tag {
+            background-color: var(--secondary);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+        
+        .car-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: #6d0000;
+            border-color: #6d0000;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: rgba(139, 0, 0, 0.1);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 900px) {
+            .inventory-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .topnav {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .menu {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .inventory-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .filter-bar {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-group {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .inventory-header h1 {
+                font-size: 2rem;
+            }
+            
+            .inventory-header p {
+                font-size: 1rem;
+            }
+            
+            .menu {
+                gap: 0.5rem;
+            }
+            
+            .menu a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+            
+            .inventory-grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topnav">
+        <div class="logo">
+            <img src="Logo.jpg" alt="Vintage Wheels Logo">
+        </div>
+        <div class="menu">
+            <a href="./about us.html">About Us</a>
+            <a href="./Inventory.html">Inventory</a>
+            <a href="./View.html">View</a>
+            <a href="./Contact.html">Contact</a>
+            <a href="./Why us.html">Why Us?</a>
+        </div>
+    </div>
+    
+    <header class="inventory-header">
+        <h1>Our Classic Collection</h1>
+        <p>Each vehicle in our inventory has been meticulously restored and maintained to preserve its original charm while offering modern reliability. Browse our selection of automotive treasures from the golden age of motoring.</p>
+    </header>
+    
+    <div class="filter-bar">
+        <div class="filter-group">
+            <label for="make">Make:</label>
+            <select id="make">
+                <option>All Makes</option>
+                <option>Chevrolet</option>
+                <option>Ford</option>
+                <option>Jaguar</option>
+                <option>Mercedes-Benz</option>
+                <option>Porsche</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label for="model">Model:</label>
+            <select id="model">
+                <option>All Models</option>
+                <option>Corvette</option>
+                <option>Mustang</option>
+                <option>E-Type</option>
+                <option>300SL</option>
+                <option>911</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label for="year">Year:</label>
+            <select id="year">
+                <option>All Years</option>
+                <option>1950s</option>
+                <option>1960s</option>
+                <option>1970s</option>
+                <option>1980s</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <label for="price">Max Price:</label>
+            <select id="price">
+                <option>Any Price</option>
+                <option>$50,000</option>
+                <option>$100,000</option>
+                <option>$250,000</option>
+                <option>$500,000+</option>
+            </select>
+        </div>
+        
+        <div class="filter-group">
+            <button type="button">Filter</button>
+        </div>
+    </div>
+    
+    <div class="inventory-grid">
+        <!-- Car 1 -->
+        <div class="car-card">
+            <div class="car-image">
+                <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="1965 Ford Mustang">
+            </div>
+            <div class="car-details">
+                <h2>1965 Ford Mustang</h2>
+                <div class="car-meta">
+                    <span>1965 • Fastback</span>
+                    <span>45,000 mi</span>
+                </div>
+                <div class="car-price">$89,500</div>
+                <p class="car-description">This numbers-matching 289 V8 Fastback has been meticulously restored to original specifications with only minor upgrades for drivability.</p>
+                <div class="car-features">
+                    <span class="feature-tag">V8 Engine</span>
+                    <span class="feature-tag">4-Speed Manual</span>
+                    <span class="feature-tag">Concours Restoration</span>
+                </div>
+                <div class="car-actions">
+                    <a href="#" class="btn btn-outline">Details</a>
+                    <a href="#" class="btn btn-primary">Inquire</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Car 2 -->
+        <div class="car-card">
+            <div class="car-image">
+                <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="1963 Chevrolet Corvette">
+            </div>
+            <div class="car-details">
+                <h2>1963 Corvette Sting Ray</h2>
+                <div class="car-meta">
+                    <span>1963 • Split Window</span>
+                    <span>32,000 mi</span>
+                </div>
+                <div class="car-price">$145,000</div>
+                <p class="car-description">The rare split-window coupe with matching numbers 327/340hp fuel-injected engine. Documented with NCRS Top Flight award.</p>
+                <div class="car-features">
+                    <span class="feature-tag">Fuel Injected</span>
+                    <span class="feature-tag">4-Speed</span>
+                    <span class="feature-tag">Numbers Matching</span>
+                </div>
+                <div class="car-actions">
+                    <a href="#" class="btn btn-outline">Details</a>
+                    <a href="#" class="btn btn-primary">Inquire</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Car 3 -->
+        <div class="car-card">
+            <div class="car-image">
+                <img src="https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/2020-Chevrolet-Corvette-Stingray/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&width=1440" alt="1961 Jaguar E-Type">
+            </div>
+            <div class="car-details">
+                <h2>1961 Jaguar E-Type</h2>
+                <div class="car-meta">
+                    <span>1961 • Series 1 Roadster</span>
+                    <span>62,000 mi</span>
+                </div>
+                <div class="car-price">$175,000</div>
+                <p class="car-description">Early flat-floor Series 1 E-Type with matching numbers. Recent comprehensive mechanical restoration with original interior.</p>
+                <div class="car-features">
+                    <span class="feature-tag">3.8L I6</span>
+                    <span class="feature-tag">4-Speed</span>
+                    <span class="feature-tag">Matching Numbers</span>
+                </div>
+                <div class="car-actions">
+                    <a href="#" class="btn btn-outline">Details</a>
+                    <a href="#" class="btn btn-primary">Inquire</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Car 4 -->
+        <div class="car-card">
+            <div class="car-image">
+                <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="1957 Mercedes-Benz 300SL">
+            </div>
+            <div class="car-details">
+                <h2>1957 Mercedes 300SL</h2>
+                <div class="car-meta">
+                    <span>1957 • Gullwing</span>
+                    <span>28,000 mi</span>
+                </div>
+                <div class="car-price">$1,250,000</div>
+                <p class="car-description">One of only 1,400 gullwing coupes produced. Recent concours-quality restoration with matching numbers engine.</p>
+                <div class="car-features">
+                    <span class="feature-tag">Gullwing Doors</span>
+                    <span class="feature-tag">Fuel Injected</span>
+                    <span class="feature-tag">Concours Restoration</span>
+                </div>
+                <div class="car-actions">
+                    <a href="#" class="btn btn-outline">Details</a>
+                    <a href="#" class="btn btn-primary">Inquire</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Car 5 -->
+        <div class="car-card">
+            <div class="car-image">
+                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="1973 Porsche 911S">
+            </div>
+            <div class="car-details">
+                <h2>1973 Porsche 911S</h2>
+                <div class="car-meta">
+                    <span>1973 • Targa</span>
+                    <span>78,000 mi</span>
+                </div>
+                <div class="car-price">$225,000</div>
+                <p class="car-description">Matching numbers 2.4L MFI engine. Original paint and interior with documented ownership history.</p>
+                <div class="car-features">
+                    <span class="feature-tag">2.4L Flat-6</span>
+                    <span class="feature-tag">5-Speed</span>
+                    <span class="feature-tag">Original Paint</span>
+                </div>
+                <div class="car-actions">
+                    <a href="#" class="btn btn-outline">Details</a>
+                    <a href="#" class="btn btn-primary">Inquire</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Car 6 -->
+        <div class="car-card">
+            <div class="car-image">
+                <img src="https://m.atcdn.co.uk/ect/media/w1224/4b14ab0c7868451baf5912779f112f40.jpg" alt="1969 Chevrolet Camaro">
+            </div>
+            <div class="car-details">
+                <h2>1969 Camaro Z/28</h2>
+                <div class="car-meta">
+                    <span>1969 • RS/SS</span>
+                    <span>52,000 mi</span>
+                </div>
+                <div class="car-price">$125,000</div>
+                <p class="car-description">Documented COPO Z/28 with original DZ 302 engine. Hugger Orange with black stripes and deluxe interior.</p>
+                <div class="car-features">
+                    <span class="feature-tag">302 V8</span>
+                    <span class="feature-tag">4-Speed</span>
+                    <span class="feature-tag">Documented COPO</span>
+                </div>
+                <div class="car-actions">
+                    <a href="#" class="btn btn-outline">Details</a>
+                    <a href="#" class="btn btn-primary">Inquire</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
