@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vintage Wheels - Why Choose Us</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B0000;
+            --secondary: #D4AF37;
+            --light: #F5F5F5;
+            --dark: #1A1A1A;
+            --vintage: #E8D8C0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--vintage);
+            background-image: url('https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+        
+        .topnav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo img {
+            height: 60px;
+            filter: drop-shadow(0 0 5px var(--secondary));
+        }
+        
+        .menu {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .menu a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .menu a:hover {
+            color: var(--secondary);
+            background-color: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .why-us-header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: rgba(26, 26, 26, 0.7);
+        }
+        
+        .why-us-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .why-us-header p {
+            font-size: 1.2rem;
+            color: var(--light);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .benefits-container {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        .benefit-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .benefit-icon {
+            font-size: 3.5rem;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .benefit-content h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .benefit-content h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary);
+        }
+        
+        .benefit-content p {
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-icon {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-top: 0.2rem;
+        }
+        
+        .testimonials-section {
+            background-color: rgba(26, 26, 26, 0.7);
+            padding: 4rem 2rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--secondary);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #555;
+            position: relative;
+        }
+        
+        .testimonial-text::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--secondary);
+            opacity: 0.2;
+            position: absolute;
+            top: -1.5rem;
+            left: -1rem;
+            font-family: serif;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--secondary);
+        }
+        
+        .author-info h4 {
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .cta-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Lato', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .btn:hover {
+            background-color: #6d0000;
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive design */
+        @media (max-width: 900px) {
+            .benefit-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .benefit-content h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .topnav {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .menu {
+                margin-top: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .why-us-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .why-us-header h1 {
+                font-size: 2rem;
+            }
+            
+            .menu {
+                gap: 0.5rem;
+            }
+            
+            .menu a {
+                font-size: 0.9rem;
+                padding: 0.3rem 0.6rem;
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topnav">
+        <div class="logo">
+            <img src="Logo.jpg" alt="Vintage Wheels Logo">
+        </div>
+        <div class="menu">
+            <a href="./about us.html">About Us</a>
+            <a href="./Inventory.html">Inventory</a>
+            <a href="./View.html">View</a>
+            <a href="./Contact.html">Contact</a>
+            <a href="./Why us.html">Why Us?</a>
+        </div>
+    </div>
+    
+    <header class="why-us-header">
+        <h1>Why Choose Vintage Wheels?</h1>
+        <p>For over two decades, we've been the trusted name in classic automobiles. Our passion for vintage cars goes beyond sales - we're curators of automotive history, dedicated to connecting enthusiasts with their dream vehicles.</p>
+    </header>
+    
+    <div class="benefits-container">
+        <!-- Benefit 1 -->
+        <div class="benefit-card">
+            <div class="benefit-icon">🏆</div>
+            <div class="benefit-content">
+                <h2>Unmatched Expertise</h2>
+                <p>Our team combines decades of experience in classic car restoration, valuation, and acquisition. We don't just sell cars - we preserve automotive heritage.</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Average 25+ years industry experience per specialist</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Certified classic car appraisers on staff</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Regular contributors to classic car publications</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Benefit 2 -->
+        <div class="benefit-card">
+            <div class="benefit-icon">🔍</div>
+            <div class="benefit-content">
+                <h2>Rigorous Inspection Process</h2>
+                <p>Every vehicle in our collection undergoes a 150-point inspection to ensure authenticity, quality, and investment value.</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Complete mechanical and structural evaluation</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Authenticity verification for all components</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Professional appraisal documentation</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Third-party verification available</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Benefit 3 -->
+        <div class="benefit-card">
+            <div class="benefit-icon">🛠️</div>
+            <div class="benefit-content">
+                <h2>Premium Restoration Services</h2>
+                <p>Our in-house restoration team brings classic cars back to their original glory using period-correct techniques and materials.</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Factory-correct restorations</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Concours-quality finishes</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Authentic parts sourcing network</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Custom restoration plans</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Benefit 4 -->
+        <div class="benefit-card">
+            <div class="benefit-icon">🤝</div>
+            <div class="benefit-content">
+                <h2>Personalized Service</h2>
+                <p>From first-time buyers to seasoned collectors, we tailor our approach to your unique needs and goals.</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Private viewings available</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Worldwide shipping coordination</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>Financing and insurance assistance</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✓</span>
+                        <span>After-sale support and maintenance</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="testimonials-section">
+        <div class="testimonials-container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonial-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>Vintage Wheels found me the perfect '67 Corvette after I'd been searching for years. Their knowledge of matching numbers cars saved me from several bad purchases I was considering elsewhere.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="James Wilson" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Ram Parsad Devkota</h4>
+                            <p>Collector since 1995</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>As a first-time classic car buyer, I was nervous about the process. The team walked me through every detail and helped me find a beautiful '65 Mustang that was within my budget but still investment quality.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Siron Prajapati</h4>
+                            <p>New Collector</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-text">
+                        <p>Their restoration team brought my father's old Jaguar back to life better than when it rolled off the showroom floor. The attention to detail was extraordinary.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Michael Chen" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Lalu Dev Paudel</h4>
+                            <p>Family Heirloom Restoration</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="cta-section">
+        <h2>Ready to Find Your Dream Car?</h2>
+        <p>Whether you're looking for a specific model or just beginning your classic car journey, our experts are here to guide you every step of the way.</p>
+        <a href="./Contact.html" class="btn">Contact Us Today</a>
+    </div>
+</body>
+</html>
